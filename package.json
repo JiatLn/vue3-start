@@ -9,6 +9,7 @@
   "dependencies": {
     "@iconify/iconify": "^1.0.7",
     "@types/node": "^16.11.9",
+    "axios": "^0.24.0",
     "element-plus": "^1.2.0-beta.3",
     "pinia": "^2.0.4",
     "sass": "^1.43.4",
