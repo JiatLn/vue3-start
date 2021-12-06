@@ -3,9 +3,9 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
-  icon: String;
-}>();
+  const props = defineProps<{
+    icon: String;
+  }>();
 </script>
 
 <style lang="scss" scoped></style>

@@ -6,6 +6,8 @@ import router from './router';
 
 import '@purge-icons/generated';
 
+import 'element-plus/dist/index.css';
+
 import '@/assets/styles/app.scss';
 import '@/assets/styles/_global.scss';
 
