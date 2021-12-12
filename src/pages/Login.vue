@@ -1,19 +1,29 @@
 <template>
   <div class="login-page h-full w-full flex items-center">
     <div class="login-warpper">
-      <p class="text-center my-6">系统登录</p>
+      <p class="text-center my-6 font-bold">系统登录</p>
       <el-form class="form" :rules="rules" ref="formEl" :model="userInfo" @submit="handleSubmit">
-        <el-form-item label="用户名" label-width="80px" prop="username">
+        <el-form-item prop="username" class="w-full">
           <el-input v-model:model-value="userInfo.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
-        <el-form-item label="密码" label-width="80px" prop="password">
+        <el-form-item prop="password" class="w-full">
           <el-input
             v-model:model-value="userInfo.password"
             type="password"
             placeholder="请输入密码"
           ></el-input>
         </el-form-item>
-        <el-form-item class="w-11/12 mt-4">
+        <el-form-item prop="code" class="w-full">
+          <el-input
+            v-model:model-value="userInfo.code"
+            style="width: 60%; display: inline-block"
+            placeholder="请输入验证码"
+          ></el-input>
+          <div class="captcha float-right" @click="refresh">
+            <img :src="captchaImg" alt="验证码" />
+          </div>
+        </el-form-item>
+        <el-form-item class="w-full mt-2">
           <el-button class="w-full" type="primary" size="small" native-type="submit">
             登录
           </el-button>
@@ -24,19 +34,27 @@
 </template>
 
 <script lang="ts" setup>
-  import { loginApi } from '@/api/userApi';
+  import { loginApi, LoginData } from '@/api/userApi';
   import { OK_CODE } from '@/app/keys';
   import { reactive, ref } from 'vue';
   import { ElMessage } from 'element-plus';
+  import { useCaptchaImg } from '@/hooks/useCaptchaImg';
+  import useUserStore from '@/store/modules/useUserStore';
+  import router from '@/router';
 
-  const userInfo = reactive({
+  const { captchaImg, uuid, refresh } = useCaptchaImg();
+
+  const userInfo = reactive<LoginData>({
     username: '',
     password: '',
+    code: '',
+    uuid: uuid.value,
   });
 
   const rules = {
     username: [{ required: true, message: '用户名不能为空', trigger: 'blur' }],
     password: [{ required: true, message: '密码不能为空', trigger: 'blur' }],
+    code: [{ required: true, message: '验证码不能为空', trigger: 'blur' }],
   };
 
   const formEl = ref<HTMLFormElement | null>(null);
@@ -47,10 +65,15 @@
     formEl.value!.validate().then(async (ok: Boolean) => {
       if (!ok) return;
       try {
-        let { code, data, msg } = await loginApi(userInfo);
+        let { code, token, msg } = await loginApi(userInfo);
         if (code === OK_CODE) {
           console.log('登录成功');
-          console.log('data :>> ', data);
+          const userStore = useUserStore();
+          userStore.setToken(token);
+          ElMessage.success('登录成功');
+          router.push({
+            name: 'Front',
+          });
         } else {
           ElMessage.error(msg);
         }

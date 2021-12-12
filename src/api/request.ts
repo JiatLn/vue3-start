@@ -4,7 +4,7 @@ import { UserInfo } from '@/store/modules/useUserStore';
 import axios from 'axios';
 
 const requests = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: import.meta.env.VITE_BASE_API,
   timeout: 20 * 1000,
 });
 

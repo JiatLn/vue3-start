@@ -3,3 +3,9 @@ export interface BasicResp<T> {
   data: T;
   msg: string;
 }
+
+export interface LoginResp {
+  code: number;
+  msg: string;
+  token: string;
+}

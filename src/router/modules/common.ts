@@ -6,6 +6,11 @@ const routes: RouteRecordRaw[] = [
     path: '/login',
     component: () => import('@/pages/Login.vue'),
   },
+  {
+    name: 'UploadData',
+    path: '/upload',
+    component: () => import('@/pages/UploadData.vue'),
+  },
 ];
 
 export default routes;

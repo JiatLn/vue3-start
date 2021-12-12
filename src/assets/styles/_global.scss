@@ -6,3 +6,23 @@ body {
 #app {
   @apply w-full h-full;
 }
+
+
+.el-message-box__content .el-icon {
+  position:absolute !important;
+}
+
+.el-input__suffix-inner i {
+  display: flex;
+}
+
+
+.el-form-item {
+  align-items: center;
+}
+
+.el-checkbox-group,
+.el-radio-group {
+  display: flex !important;
+  align-items: center;
+}

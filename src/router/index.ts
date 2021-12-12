@@ -8,7 +8,6 @@ const modules = import.meta.globEager('./modules/*.ts');
 for (const path in modules) {
   routes.push(...modules[path].default);
 }
-console.log(routes);
 
 const router = createRouter({
   history: createWebHistory(),
