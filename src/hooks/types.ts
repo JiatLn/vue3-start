@@ -1,13 +1,16 @@
+import { Pos, SuitId } from '@/store/modules/types';
 import { EAttrType, ScoreType } from '@/utils/types';
 
 export interface IEquipFilterParams {
-  pos: number;
-  suitId: number;
   page: number;
   size: number;
-  quality: number;
-  level: number;
+  pos: Pos | undefined;
+  level: number | undefined;
+  suitId: SuitId | undefined;
+  quality: number | undefined;
   mainAttr: EAttrType | undefined;
+  suitType: EAttrType | undefined;
+  randomAttrs: EAttrType[];
 }
 
 export interface IEquipFilterObj {

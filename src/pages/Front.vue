@@ -15,7 +15,7 @@
         @select="handleSelect"
       >
         <el-menu-item index="EquipList" :route="{ name: 'EquipList' }">御魂列表</el-menu-item>
-        <el-menu-item index="EquipFilter" :route="{ name: 'EquipFilter' }">御魂筛选</el-menu-item>
+        <el-menu-item index="Analysis" :route="{ name: 'Analysis' }">分析</el-menu-item>
       </el-menu>
       <router-view></router-view>
     </div>

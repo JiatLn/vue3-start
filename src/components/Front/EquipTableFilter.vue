@@ -1,7 +1,29 @@
 <template>
   <el-form ref="refForm" :inline="true" :model="filterForm" class="mt-3">
+    <el-form-item label="二件套加成" prop="suitType">
+      <el-select
+        style="width: 120px"
+        v-model="filterForm.suitType"
+        placeholder="可以搜索筽~"
+        filterable
+        clearable
+      >
+        <el-option
+          v-for="(item, i) in suitTypeOpts"
+          :key="i"
+          :label="item.label"
+          :value="item.value"
+        ></el-option>
+      </el-select>
+    </el-form-item>
     <el-form-item label="御魂类型" prop="suitId">
-      <el-select v-model="filterForm.suitId" placeholder="可以搜索筽~" filterable>
+      <el-select
+        style="width: 120px"
+        v-model="filterForm.suitId"
+        placeholder="可以搜索筽~"
+        filterable
+        clearable
+      >
         <el-option
           v-for="(item, i) in suitOptions"
           :key="i"
@@ -10,8 +32,15 @@
         ></el-option>
       </el-select>
     </el-form-item>
+
     <el-form-item label="位置" prop="pos">
-      <el-select v-model="filterForm.pos" placeholder="">
+      <el-select
+        style="width: 120px"
+        v-model="filterForm.pos"
+        placeholder="可以搜索筽~"
+        filterable
+        clearable
+      >
         <el-option
           v-for="(item, i) in posOptions"
           :key="i"
@@ -21,9 +50,33 @@
       </el-select>
     </el-form-item>
     <el-form-item label="主属性" prop="mainAttr">
-      <el-select v-model="filterForm.mainAttr" placeholder="" clearable>
+      <el-select
+        style="width: 120px"
+        v-model="filterForm.mainAttr"
+        placeholder="可以搜索筽~"
+        filterable
+        clearable
+      >
         <el-option
-          v-for="(item, i) in attrOptions"
+          v-for="(item, i) in mainAttrOpts"
+          :key="i"
+          :label="item.label"
+          :value="item.value"
+        ></el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item label="副属性" prop="randomAttrs">
+      <el-select
+        style="width: 380px"
+        v-model="filterForm.randomAttrs"
+        multiple
+        :multiple-limit="4"
+        placeholder="可以搜索筽~"
+        filterable
+        clearable
+      >
+        <el-option
+          v-for="(item, i) in randomAttrOpts"
           :key="i"
           :label="item.label"
           :value="item.value"
@@ -31,7 +84,13 @@
       </el-select>
     </el-form-item>
     <el-form-item label="星级" prop="quality">
-      <el-select v-model="filterForm.quality" placeholder="">
+      <el-select
+        style="width: 120px"
+        v-model="filterForm.quality"
+        placeholder="可以搜索筽~"
+        filterable
+        clearable
+      >
         <el-option
           v-for="(item, i) in starOptions"
           :key="i"
@@ -41,7 +100,13 @@
       </el-select>
     </el-form-item>
     <el-form-item label="等级" prop="level">
-      <el-select v-model="filterForm.level" placeholder="">
+      <el-select
+        style="width: 120px"
+        v-model="filterForm.level"
+        placeholder="可以搜索筽~"
+        filterable
+        clearable
+      >
         <el-option
           v-for="(item, i) in levelOptions"
           :key="i"
@@ -57,27 +122,15 @@
 </template>
 
 <script setup lang="ts">
-  import { attrOptions, suitOptions as _suitOptions } from '@/assets/data/yuhunInfo';
+  import { mainAttrOpts, randomAttrOpts, suitOptions, suitTypeOpts } from '@/assets/data/yuhunInfo';
   import { IEquipFilterParams } from '@/hooks/types';
-  import { EAttrType } from '@/utils/types';
   import { ref, watch } from 'vue';
 
   const emits = defineEmits(['onFilter']);
 
   const refForm = ref<any>(null);
 
-  const suitOptions = [
-    {
-      label: '全部',
-      value: -1,
-    },
-  ].concat(..._suitOptions);
-
   const posOptions = [
-    {
-      label: '全部',
-      value: -1,
-    },
     {
       label: '一号位',
       value: 0,
@@ -106,10 +159,6 @@
 
   const starOptions = [
     {
-      label: '全部',
-      value: -1,
-    },
-    {
       label: '六星',
       value: 6,
     },
@@ -124,10 +173,6 @@
   ];
 
   const levelOptions = [
-    {
-      label: '全部',
-      value: -1,
-    },
     {
       label: '+15',
       value: 15,
@@ -156,11 +201,13 @@
 
   const filterForm = ref<Partial<IEquipFilterParams>>({
     page: 1,
-    pos: -1,
-    suitId: -1,
-    quality: -1,
-    level: -1,
+    pos: undefined,
+    suitId: undefined,
+    quality: undefined,
+    level: undefined,
     mainAttr: undefined,
+    suitType: undefined,
+    randomAttrs: [],
   });
 
   watch(

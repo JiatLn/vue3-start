@@ -15,9 +15,9 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/pages/Front/EquipList.vue'),
       },
       {
-        path: '/filter',
-        name: 'EquipFilter',
-        component: () => import('@/pages/Front/EquipFilter.vue'),
+        path: '/analysis',
+        name: 'Analysis',
+        component: () => import('@/pages/Front/Analysis.vue'),
       },
     ],
   },

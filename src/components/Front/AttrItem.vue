@@ -1,7 +1,5 @@
 <template>
-  <span>
-    {{ getAttrValueWithFmt(randomAttrs, type, digit) }}
-  </span>
+  <span>{{ getAttrValueWithFmt(randomAttrs, type, digit) }}</span>
   <el-tag
     size="mini"
     v-if="showTag && times > 0"
