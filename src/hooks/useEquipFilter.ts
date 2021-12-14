@@ -1,8 +1,8 @@
-import { IHeroEquip } from '@/store/modules/types';
+import type { IHeroEquip } from '@/store/modules/types';
 import useHeroEquipStore from '@/store/modules/useHeroEquipStore';
 import { calcScoreWithType } from '@/utils/equip';
 import { ref } from 'vue';
-import { IEquipFilterObj } from './types';
+import type { IEquipFilterObj } from './types';
 
 export const useEquipFilter = () => {
   // const

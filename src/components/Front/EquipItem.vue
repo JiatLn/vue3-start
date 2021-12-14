@@ -3,14 +3,14 @@
     <div class="box-top">
       <div class="box-top__left">
         <div class="icon">
-          <img :src="`/src/assets/img/equips/${equip.suit_id}.png`" alt="御魂图标" />
+          <img :src="`/src/assets/img/equips/${props.equip.suit_id}.png`" alt="御魂图标" />
         </div>
         <div class="desc">
           <span>{{ formatYhName(equip.suit_id) }} +{{ equip.level }}</span>
           <span>{{ equip.quality }}星</span>
         </div>
       </div>
-      <div class="box-top__right">{{ equip.pos }}号位</div>
+      <div class="box-top__right">{{ equip.pos + 1 }}号位</div>
     </div>
 
     <ul class="attrs">
@@ -18,7 +18,7 @@
         <span>{{ attrMap[equip.base_attr.type] }}</span>
         <span>+{{ getAttrValueWithFmt([equip.base_attr], equip.base_attr.type, 0) }}</span>
       </li>
-      <li class="attr-item" v-for="(item, i) in equip.random_attrs" :key="i">
+      <li v-for="(item, i) in equip.random_attrs" :key="i" class="attr-item">
         <span>{{ attrMap[item.type] }}</span>
         <span>+{{ getAttrValueWithFmt(equip.random_attrs, item.type, showDigit ? 4 : 0) }}</span>
       </li>
@@ -43,9 +43,8 @@
 <script setup lang="ts">
   import { attrMap } from '@/assets/data/translateMap';
   import { formatYhName } from '@/assets/data/yuhunInfo';
-  import { IHeroEquip } from '@/store/modules/types';
+  import type { IHeroEquip } from '@/store/modules/types';
   import { getAttrValueWithFmt } from '@/utils/equip';
-  import { ref } from 'vue';
 
   const props = defineProps<{
     equip: IHeroEquip;

@@ -1,4 +1,4 @@
-import { EAttrType } from '@/utils/types';
+import type { EAttrType } from '@/utils/types';
 
 export interface IHeroEquip {
   attrs: any[];

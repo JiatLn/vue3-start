@@ -2,7 +2,7 @@
   <div class="login-page h-full w-full flex items-center">
     <div class="login-warpper">
       <p class="text-center my-6 font-bold">系统登录</p>
-      <el-form class="form" :rules="rules" ref="formEl" :model="userInfo" @submit="handleSubmit">
+      <el-form ref="formEl" class="form" :rules="rules" :model="userInfo" @submit="handleSubmit">
         <el-form-item prop="username" class="w-full">
           <el-input v-model:model-value="userInfo.username" placeholder="请输入用户名"></el-input>
         </el-form-item>
@@ -34,7 +34,8 @@
 </template>
 
 <script lang="ts" setup>
-  import { loginApi, LoginData } from '@/api/userApi';
+  import type { LoginData } from '@/api/userApi';
+  import { loginApi } from '@/api/userApi';
   import { OK_CODE } from '@/app/keys';
   import { reactive, ref } from 'vue';
   import { ElMessage } from 'element-plus';

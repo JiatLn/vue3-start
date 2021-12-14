@@ -25,7 +25,7 @@
 <script setup lang="ts">
   import useHeroEquipStore from '@/store/modules/useHeroEquipStore';
   import { UploadFilled } from '@element-plus/icons';
-  import { UploadFile } from 'element-plus/es/components/upload/src/upload.type';
+  import type { UploadFile } from 'element-plus/es/components/upload/src/upload.type';
   import { onMounted } from 'vue';
   import { useRouter } from 'vue-router';
 

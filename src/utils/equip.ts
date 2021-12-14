@@ -1,5 +1,6 @@
-import { IYhAttr } from '@/store/modules/types';
-import { ScoreType, EAttrType, AttrsDict } from './types';
+import type { IYhAttr } from '@/store/modules/types';
+import { EAttrType, AttrsDict } from './types';
+import type { ScoreType } from './types';
 import { roundWithDigit } from './math';
 
 export const getAttrValue = (attrs: IYhAttr[], type: EAttrType): number => {

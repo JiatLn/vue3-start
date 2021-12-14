@@ -1,4 +1,4 @@
-import { IHeroEquip } from '@/store/modules/types';
+import type { IHeroEquip } from '@/store/modules/types';
 import useHeroEquipStore from '@/store/modules/useHeroEquipStore';
 import { EAttrType } from '@/utils/types';
 import { onMounted, ref } from 'vue';

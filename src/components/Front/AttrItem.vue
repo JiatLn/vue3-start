@@ -1,8 +1,8 @@
 <template>
   <span>{{ getAttrValueWithFmt(randomAttrs, type, digit) }}</span>
   <el-tag
-    size="mini"
     v-if="showTag && times > 0"
+    size="mini"
     class="ml-2"
     effect="dark"
     :type="times === 6 ? 'danger' : ''"
@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-  import { IYhAttr } from '@/store/modules/types';
-  import { EAttrType } from '@/utils/types';
+  import type { IYhAttr } from '@/store/modules/types';
+  import type { EAttrType } from '@/utils/types';
   import { computed } from 'vue';
   import { calcEffectiveTimes, getAttrValueWithFmt } from '@/utils/equip';
 

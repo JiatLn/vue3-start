@@ -1,5 +1,5 @@
-import { Pos, SuitId } from '@/store/modules/types';
-import { EAttrType, ScoreType } from '@/utils/types';
+import type { Pos, SuitId } from '@/store/modules/types';
+import type { EAttrType, ScoreType } from '@/utils/types';
 
 export interface IEquipFilterParams {
   page: number;

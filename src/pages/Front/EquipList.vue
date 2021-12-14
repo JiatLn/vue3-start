@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-  import { IEquipFilterParams } from '@/hooks/types';
+  import type { IEquipFilterParams } from '@/hooks/types';
   import { ref, onMounted } from 'vue';
   import { useHeroEquip } from '@/hooks/useHeroEquip';
   import EquipTable from '@/components/Front/EquipTable.vue';

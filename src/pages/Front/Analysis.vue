@@ -24,7 +24,7 @@
 
 <script setup lang="ts">
   import { getRandomVal, useAnalysis } from '@/hooks/useAnalysis';
-  import { IHeroEquip } from '@/store/modules/types';
+  import type { IHeroEquip } from '@/store/modules/types';
   import { onMounted, ref } from 'vue';
   import EquipItem from '@/components/Front/EquipItem.vue';
   import { roundWithDigit } from '@/utils/math';

@@ -1,12 +1,12 @@
 <template>
-  <el-table :data="equipList" style="width: 100%" border>
+  <el-table :data="props.equipList" style="width: 100%" border>
     <el-table-column prop="id" label="ID" align="center">
       <template #default="{ row }">
         <el-popover placement="right-start" title="" trigger="hover" :width="260">
           <template #reference>
             <el-link type="primary">{{ row.id.slice(0, 8) }}</el-link>
           </template>
-          <EquipItem :equip="row" :showDigit="showDigit" v-if="row"></EquipItem>
+          <EquipItem v-if="row" :equip="row" :show-digit="showDigit"></EquipItem>
         </el-popover>
       </template>
     </el-table-column>
@@ -119,11 +119,9 @@
   import { formatTimeStamp } from '@/utils/date';
   import AttrItem from '@/components/Front/AttrItem.vue';
   import { EAttrType } from '@/utils/types';
-  import { IHeroEquip } from '@/store/modules/types';
+  import type { IHeroEquip } from '@/store/modules/types';
   import { attrMap } from '@/assets/data/translateMap';
   import EquipItem from '@/components/Front/EquipItem.vue';
-
-  // const EAttrType ;
 
   const props = defineProps<{
     equipList: IHeroEquip[];

@@ -2,8 +2,8 @@
   <el-form ref="refForm" :inline="true" :model="filterForm" class="mt-3">
     <el-form-item label="二件套加成" prop="suitType">
       <el-select
-        style="width: 120px"
         v-model="filterForm.suitType"
+        style="width: 120px"
         placeholder="可以搜索筽~"
         filterable
         clearable
@@ -18,8 +18,8 @@
     </el-form-item>
     <el-form-item label="御魂类型" prop="suitId">
       <el-select
-        style="width: 120px"
         v-model="filterForm.suitId"
+        style="width: 120px"
         placeholder="可以搜索筽~"
         filterable
         clearable
@@ -35,8 +35,8 @@
 
     <el-form-item label="位置" prop="pos">
       <el-select
-        style="width: 120px"
         v-model="filterForm.pos"
+        style="width: 120px"
         placeholder="可以搜索筽~"
         filterable
         clearable
@@ -51,8 +51,8 @@
     </el-form-item>
     <el-form-item label="主属性" prop="mainAttr">
       <el-select
-        style="width: 120px"
         v-model="filterForm.mainAttr"
+        style="width: 120px"
         placeholder="可以搜索筽~"
         filterable
         clearable
@@ -67,8 +67,8 @@
     </el-form-item>
     <el-form-item label="副属性" prop="randomAttrs">
       <el-select
-        style="width: 380px"
         v-model="filterForm.randomAttrs"
+        style="width: 380px"
         multiple
         :multiple-limit="4"
         placeholder="可以搜索筽~"
@@ -85,8 +85,8 @@
     </el-form-item>
     <el-form-item label="星级" prop="quality">
       <el-select
-        style="width: 120px"
         v-model="filterForm.quality"
+        style="width: 120px"
         placeholder="可以搜索筽~"
         filterable
         clearable
@@ -101,8 +101,8 @@
     </el-form-item>
     <el-form-item label="等级" prop="level">
       <el-select
-        style="width: 120px"
         v-model="filterForm.level"
+        style="width: 120px"
         placeholder="可以搜索筽~"
         filterable
         clearable
@@ -123,7 +123,7 @@
 
 <script setup lang="ts">
   import { mainAttrOpts, randomAttrOpts, suitOptions, suitTypeOpts } from '@/assets/data/yuhunInfo';
-  import { IEquipFilterParams } from '@/hooks/types';
+  import type { IEquipFilterParams } from '@/hooks/types';
   import { ref, watch } from 'vue';
 
   const emits = defineEmits(['onFilter']);
