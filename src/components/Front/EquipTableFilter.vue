@@ -25,7 +25,7 @@
         clearable
       >
         <el-option
-          v-for="(item, i) in suitOptions"
+          v-for="(item, i) in suitOpts"
           :key="i"
           :label="item.label"
           :value="item.value"
@@ -122,7 +122,7 @@
 </template>
 
 <script setup lang="ts">
-  import { mainAttrOpts, randomAttrOpts, suitOptions, suitTypeOpts } from '@/assets/data/yuhunInfo';
+  import { mainAttrOpts, randomAttrOpts, suitOpts, suitTypeOpts } from '@/assets/data/yuhunInfo';
   import type { IEquipFilterParams } from '@/hooks/types';
   import { ref, watch } from 'vue';
 

@@ -1,44 +1,87 @@
 <template>
-  <el-descriptions title="" :column="1" border>
+  <el-descriptions title="" :column="1" border class="mt-6">
     <el-descriptions-item label="散件一速">
-      <ul class="flex gap-4">
-        <li>
-          <el-tag type="danger">
-            {{ roundWithDigit(maxSpeedVal, 4) }}
-          </el-tag>
-        </li>
-        <li v-for="(item, i) in maxSpeedList" :key="i">
-          <el-popover placement="bottom" title="" trigger="hover" :width="260">
-            <template #reference>
-              <el-tag>
-                {{ roundWithDigit(getRandomVal(item), 4) }}
-              </el-tag>
-            </template>
-            <EquipItem :equip="item" :show-digit="false"></EquipItem>
-          </el-popover>
-        </li>
-      </ul>
+      <SpeedList :equip-list="sanjian.list" :first-speed="sanjian.val"></SpeedList>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template #label>招财猫</template>
+      <SpeedList :equip-list="zcm.list" :first-speed="zcm.val"></SpeedList>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template #label>蚌精</template>
+      <SpeedList :equip-list="bangjing.list" :first-speed="bangjing.val"></SpeedList>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template #label>火灵</template>
+      <SpeedList :equip-list="huoling.list" :first-speed="huoling.val"></SpeedList>
+    </el-descriptions-item>
+    <el-descriptions-item>
+      <template #label>
+        <el-select v-model="suitId" placeholder="可以搜索哦~" filterable clearable>
+          <el-option
+            v-for="item in suitOpts"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          ></el-option>
+        </el-select>
+      </template>
+      <SpeedList
+        v-if="suitId"
+        :equip-list="otherSuit.list"
+        :first-speed="otherSuit.val"
+      ></SpeedList>
     </el-descriptions-item>
   </el-descriptions>
 </template>
 
 <script setup lang="ts">
-  import { getRandomVal, useAnalysis } from '@/hooks/useAnalysis';
-  import type { IHeroEquip } from '@/store/modules/types';
-  import { onMounted, ref } from 'vue';
-  import EquipItem from '@/components/Front/EquipItem.vue';
-  import { roundWithDigit } from '@/utils/math';
+  import { useAnalysis } from '@/hooks/useAnalysis';
+  import type { IHeroEquip, SuitId } from '@/store/modules/types';
+  import { onMounted, ref, watch } from 'vue';
+  import SpeedList from '@/components/Front/Analysis/SpeedList.vue';
+  import { suitOpts } from '@/assets/data/yuhunInfo';
 
-  const { getMaxSpeed } = useAnalysis();
+  const { getMaxSpeed, getSuitMaxSpeed } = useAnalysis();
 
-  const maxSpeedList = ref<IHeroEquip[]>([]);
-  const maxSpeedVal = ref(0);
+  const sanjian = ref({
+    val: 0,
+    list: [] as IHeroEquip[],
+  });
+  const zcm = ref({
+    val: 0,
+    list: [] as IHeroEquip[],
+  });
+  const bangjing = ref({
+    val: 0,
+    list: [] as IHeroEquip[],
+  });
+  const huoling = ref({
+    val: 0,
+    list: [] as IHeroEquip[],
+  });
+  const otherSuit = ref({
+    val: 0,
+    list: [] as IHeroEquip[],
+  });
+
+  const suitId = ref<SuitId | undefined>(undefined);
 
   onMounted(() => {
-    const { val, list } = getMaxSpeed();
-    maxSpeedList.value = list;
-    maxSpeedVal.value = val;
+    sanjian.value = getMaxSpeed();
+    zcm.value = getSuitMaxSpeed(300010);
+    bangjing.value = getSuitMaxSpeed(300034);
+    huoling.value = getSuitMaxSpeed(300019);
   });
+
+  watch(
+    () => suitId.value,
+    (val) => {
+      if (val) {
+        otherSuit.value = getSuitMaxSpeed(val);
+      }
+    }
+  );
 </script>
 
 <style lang="scss" scoped></style>

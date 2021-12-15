@@ -24,7 +24,7 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "ignorePatterns": ["types/env.d.ts", "node_modules/**", "**/dist/**"],
+  "ignorePatterns": ["types/env.d.ts", "node_modules/**", "**/dist/**", "*.d.ts"],
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/no-var-requires": "off",

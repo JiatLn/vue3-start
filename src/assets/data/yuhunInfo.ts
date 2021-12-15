@@ -1,4 +1,4 @@
-import { SuitId } from '@/store/modules/types';
+import type { SuitId } from '@/store/modules/types';
 import { EAttrType } from '@/utils/types';
 
 export const yuhunInfo = [
@@ -228,7 +228,7 @@ export const formatYhName = (id: SuitId): string => {
   return yuhunInfo.find((item) => item.id === id)?.name || '未知';
 };
 
-export const suitOptions = yuhunInfo.map((item) => ({
+export const suitOpts = yuhunInfo.map((item) => ({
   label: item.name,
   value: item.id,
 }));
